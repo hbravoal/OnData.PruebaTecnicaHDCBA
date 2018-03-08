@@ -48,7 +48,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "containers_categories_id")] containers_categories containers_categories)
+        public async Task<ActionResult> Create([Bind(Include = "id,category_id,container_id")] containers_categories containers_categories)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "containers_categories_id")] containers_categories containers_categories)
+        public async Task<ActionResult> Edit([Bind(Include = "id,category_id,container_id")] containers_categories containers_categories)
         {
             if (ModelState.IsValid)
             {

@@ -11,7 +11,7 @@ namespace OnData.PruebaTecnicaHDCBA.DynamicData.FieldTemplates
 {
 
 
-    public partial class DynamicDataField1_EditField
+    public partial class DynamicContainers_EditField
     {
 
         protected System.Web.UI.WebControls.TextBox TextBox1;

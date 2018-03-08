@@ -1,42 +1,120 @@
-﻿@model OnData.PruebaTecnicaHDCBA.Models.containers
+﻿@model OnData.PruebaTecnicaHDCBA.Models.containerView
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>containers</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+@using (Html.BeginForm("Details", "Containers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="container">
+   <div class="panel panel-info">
+       <div class="panel panel-heading"><h1>Description</h1></div>
+<div class="panel-body">
+    <div class="container">
+        <div class="col-md-6 form-horizontal">
+            <div class="form-group">
+                    @Html.DisplayFor(model => model.name)
+                <div class="col-md-3">
+                    
+                    @Html.DisplayNameFor(model => model.name)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.DisplayFor(model => model.description)
+                <div class="col-md-3">
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+                    @Html.DisplayNameFor(model => model.description)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.DisplayFor(model => model.type_container_id)
+                <div class="col-md-3">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.content)
-        </dt>
-
-        <dd>
+                    @Html.DisplayNameFor(model => model.type_container_id)
+                </div>
+            </div>
+            
+            <div class="form-group">
+                
+                <div class="col-md-8">
+                    <h5>Califica ésta imagen:</h5>    
+                    <select id="calificacion">
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+           </div>
+            <div class="col-md-8">
+                
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Calificar</button>
+                @Html.ActionLink("Back to List", "Index")
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">New Email:</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Send Email</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <div class="col-md-6">
+            <h4>Contenido:</h4>
             @Html.DisplayFor(model => model.content)
-        </dd>
+            @if (!string.IsNullOrEmpty(Model.image))
+            {
+                <img src="@Url.Content(Model.image)" alt="Image" class="img-responsive" style="max-width: 100%; height: auto;" />
+            }
+             </div>
+    </div>
+         
 
-    </dl>
+ 
+ 
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    </div>
+   
+</div>
+
+   
+
+
+}
+
+@section Scripts {
+    <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New Email ' + recipient)
+            
+        })
+    </script>
+}

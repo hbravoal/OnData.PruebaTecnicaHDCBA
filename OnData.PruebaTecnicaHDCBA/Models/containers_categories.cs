@@ -1,4 +1,4 @@
-﻿using System;
+﻿//using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,12 +9,13 @@ namespace OnData.PruebaTecnicaHDCBA.Models
     public class containers_categories
     {
         [Key]
-        public int containers_categories_id { get; set; }
+        public int id { get; set; }
 
-        
 
-        public virtual categories category { get; set; }
-        public virtual containers container { get; set; }
+        public int category_id { get; set; }
+        //public virtual categories category { get; set; }
+        public int container_id { get; set; }
+        //public virtual containers container { get; set; }
 
 
     }

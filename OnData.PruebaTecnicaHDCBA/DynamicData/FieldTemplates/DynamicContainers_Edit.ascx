@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" CodeBehind="DynamicDataField1_Edit.ascx.cs" Inherits="OnData.PruebaTecnicaHDCBA.DynamicData.FieldTemplates.DynamicDataField1_EditField" %>
+﻿<%@ Control Language="C#" CodeBehind="DynamicContainers_Edit.ascx.cs" Inherits="OnData.PruebaTecnicaHDCBA.DynamicData.FieldTemplates.DynamicContainers_EditField" %>
 
 <asp:TextBox ID="TextBox1" runat="server" Text='<%# FieldValueEditString %>'></asp:TextBox>
 

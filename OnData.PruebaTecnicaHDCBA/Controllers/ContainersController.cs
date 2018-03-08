@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿
 using System.Data.Entity;
-using System.Linq;
+
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using OnData.PruebaTecnicaHDCBA.Context;
 using OnData.PruebaTecnicaHDCBA.Models;
@@ -17,10 +14,23 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
     {
         private StoreContext db = new StoreContext();
 
-        // GET: Containers
+        
         public async Task<ActionResult> Index()
         {
+
+            //var containers = db.containers.OrderBy(x => x.name)
+            //    .Skip((page - 1) * RegisterPerPage)
+            //    .Take(RegisterPerPage).ToList();
+
+            //var totalRegister = db.containers.Count();
+
+
+            //var container = containers;
+            
+            
+               
             return View(await db.containers.ToListAsync());
+
         }
 
         // GET: Containers/Details/5
@@ -35,13 +45,29 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
             {
                 return HttpNotFound();
             }
-            return View(containers);
+            var p = ToView(containers);
+            return View(p);
         }
-
-        
-        public ActionResult Create()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Details(containerView container)
         {
             
+            await MailHelper.SendMail(container.email, "Porta","gracias");
+            if (ModelState.IsValid)
+            {
+                db.Entry(container).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            
+            return View();
+        }
+
+        [Authorize(Roles ="Admin")]
+        public ActionResult Create()
+        {
+
             return View();
         }
 
@@ -54,7 +80,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
         {
             if (ModelState.IsValid)
             {
-              
+
                 var pic = string.Empty;
                 var folder = "~/Content/Images";
 
@@ -66,7 +92,8 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
                 }
 
                 var container = ToContainer(view);
-                container.Image = pic;
+                
+                container.image = pic;
                 db.containers.Add(container);
                 await db.SaveChangesAsync();
                 return RedirectToAction(string.Format("Index"));
@@ -74,17 +101,18 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
 
             return View(view);
 
-        
+
         }
 
         private containers ToContainer(containerView view)
         {
             return new containers
             {
-                containers_categories = view.containers_categories,
+                //containers_categories = view.containers_categories,
+                name= view.name,
                 content = view.content,
                 description = view.description,
-                Image = view.Image,
+                image = view.image,
                 id = view.id,
                 type_container_id = view.type_container_id,
             };
@@ -94,14 +122,16 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
         {
             return new containerView
             {
-                containers_categories = item.containers_categories,
+                //containers_categories = item.containers_categories,
+                name = item.name,
                 content = item.content,
                 description = item.description,
-                Image = item.Image,
+                image = item.image,
                 id = item.id,
                 type_container_id = item.type_container_id,
             };
         }
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -132,7 +162,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
             return View(containers);
         }
 
-        // GET: Containers/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)

@@ -12,17 +12,17 @@ using OnData.PruebaTecnicaHDCBA.Models;
 
 namespace OnData.PruebaTecnicaHDCBA.Controllers
 {
-    public class Type_ContainersController : Controller
+    public class Type_containersController : Controller
     {
         private StoreContext db = new StoreContext();
 
-        // GET: Type_Containers
+        // GET: Type_containers
         public async Task<ActionResult> Index()
         {
             return View(await db.type_containers.ToListAsync());
         }
 
-        // GET: Type_Containers/Details/5
+        // GET: Type_containers/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,13 +37,13 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
             return View(type_containers);
         }
 
-        // GET: Type_Containers/Create
+        // GET: Type_containers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Type_Containers/Create
+        // POST: Type_containers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -60,7 +60,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
             return View(type_containers);
         }
 
-        // GET: Type_Containers/Edit/5
+        // GET: Type_containers/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,7 +75,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
             return View(type_containers);
         }
 
-        // POST: Type_Containers/Edit/5
+        // POST: Type_containers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -91,7 +91,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
             return View(type_containers);
         }
 
-        // GET: Type_Containers/Delete/5
+        // GET: Type_containers/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -106,7 +106,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
             return View(type_containers);
         }
 
-        // POST: Type_Containers/Delete/5
+        // POST: Type_containers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

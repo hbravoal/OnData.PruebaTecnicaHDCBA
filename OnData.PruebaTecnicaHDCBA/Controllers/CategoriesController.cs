@@ -37,6 +37,20 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
             return View(categories);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Details(categories categories)
+        {
+            if (ModelState.IsValid)
+            {
+                db.categories.Add(categories);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            return View(categories);
+        }
+
         // GET: Categories/Create
         public ActionResult Create()
         {
@@ -48,7 +62,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,name")] categories categories)
+        public async Task<ActionResult> Create([Bind(Include = "id,category")] categories categories)
         {
             if (ModelState.IsValid)
             {
@@ -72,6 +86,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(categories);
         }
 
@@ -80,7 +95,7 @@ namespace OnData.PruebaTecnicaHDCBA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,name")] categories categories)
+        public async Task<ActionResult> Edit([Bind(Include = "id,category")] categories categories)
         {
             if (ModelState.IsValid)
             {

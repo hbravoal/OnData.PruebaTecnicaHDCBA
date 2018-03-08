@@ -15,7 +15,7 @@ using System.Web.DynamicData;
 
 namespace OnData.PruebaTecnicaHDCBA.DynamicData.FieldTemplates
 {
-    public partial class DynamicDataField1 : System.Web.DynamicData.FieldTemplateUserControl
+    public partial class DynamicContainers : System.Web.DynamicData.FieldTemplateUserControl
     {
         public override Control DataControl
         {
