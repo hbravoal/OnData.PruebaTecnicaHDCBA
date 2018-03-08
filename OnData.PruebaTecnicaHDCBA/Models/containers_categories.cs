@@ -11,8 +11,7 @@ namespace OnData.PruebaTecnicaHDCBA.Models
         [Key]
         public int containers_categories_id { get; set; }
 
-        public int containers_id { get; set; }
-        public int categories_id { get; set; }
+        
 
         public virtual categories category { get; set; }
         public virtual containers container { get; set; }

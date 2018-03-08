@@ -169,16 +169,38 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Context\StoreContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ContainersController.cs" />
+    <Compile Include="Controllers\Containers_CategoriesController.cs" />
+    <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Type_ContainersController.cs" />
+    <Compile Include="DynamicData\FieldTemplates\DynamicDataField1.ascx.cs">
+      <DependentUpon>DynamicDataField1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\DynamicDataField1.ascx.designer.cs">
+      <DependentUpon>DynamicDataField1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\DynamicDataField1_Edit.ascx.cs">
+      <DependentUpon>DynamicDataField1_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\DynamicDataField1_Edit.ascx.designer.cs">
+      <DependentUpon>DynamicDataField1_Edit.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FilesHelpers.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\categories.cs" />
     <Compile Include="Models\containers.cs" />
     <Compile Include="Models\containers_categories.cs" />
+    <Compile Include="Models\containerView.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\type_containers.cs" />
@@ -188,6 +210,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DynamicData\FieldTemplates\DynamicDataField1.ascx" />
+    <Content Include="DynamicData\FieldTemplates\DynamicDataField1_Edit.ascx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -195,6 +219,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Categories.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -240,9 +265,31 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Type_Containers\Create.cshtml" />
+    <Content Include="Views\Type_Containers\Delete.cshtml" />
+    <Content Include="Views\Type_Containers\Details.cshtml" />
+    <Content Include="Views\Type_Containers\Edit.cshtml" />
+    <Content Include="Views\Type_Containers\Index.cshtml" />
+    <Content Include="Views\Containers_Categories\Create.cshtml" />
+    <Content Include="Views\Containers_Categories\Delete.cshtml" />
+    <Content Include="Views\Containers_Categories\Details.cshtml" />
+    <Content Include="Views\Containers_Categories\Edit.cshtml" />
+    <Content Include="Views\Containers_Categories\Index.cshtml" />
+    <Content Include="Views\Containers\Create.cshtml" />
+    <Content Include="Views\Containers\Delete.cshtml" />
+    <Content Include="Views\Containers\Details.cshtml" />
+    <Content Include="Views\Containers\Edit.cshtml" />
+    <Content Include="Views\Containers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
+    <Folder Include="Views\Generic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -10,6 +10,7 @@ namespace OnData.PruebaTecnicaHDCBA.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(OnData.PruebaTecnicaHDCBA.Context.StoreContext context)
